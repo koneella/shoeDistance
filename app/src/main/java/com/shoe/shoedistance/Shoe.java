@@ -14,12 +14,7 @@ public class Shoe {
         this.brand = brand;
         this.distance = distance;
     }
-
-    public ArrayList<Shoe> shoes = new ArrayList<Shoe>();
-
-    public void addShoe(Shoe shoe){
-        shoes.add(shoe);
-    }
+    
 
     public int getDistance() {
         return distance;
