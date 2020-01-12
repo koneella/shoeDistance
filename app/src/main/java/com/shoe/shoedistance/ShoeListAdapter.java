@@ -25,7 +25,6 @@ public class ShoeListAdapter extends ArrayAdapter<Shoe> {
         mResource = resource;
     }
 
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -48,7 +47,6 @@ public class ShoeListAdapter extends ArrayAdapter<Shoe> {
         tvDistance.setText("" + distance);
 
         return convertView;
-
     }
 }
 

@@ -14,7 +14,7 @@ public class Shoe {
         this.brand = brand;
         this.distance = distance;
     }
-    
+
 
     public int getDistance() {
         return distance;
