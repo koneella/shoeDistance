@@ -12,6 +12,11 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
+//todo add shoes button
+//todo graph for shoe distances
+//todo black action bar maybe
+
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -20,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         ListView listShoes = (ListView) findViewById(R.id.list_shoes);
 
@@ -55,11 +61,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Log.d("testiii", "" + i);
                 // open shoeactivity and pass the shoe arraylist to it
-                Intent intent = new Intent(this, ShoeActivity.class);
-                intent.putExtra("shoes", shoes);
+                Intent intent = new Intent(MainActivity.this, ShoeActivity.class);
 
+                // pass the location from the listview
+                intent.putExtra("position", i);
+
+                // pass the shoe arraylist
+                intent.putExtra("shoe", shoes);
+                startActivity(intent);
             }
         });
 

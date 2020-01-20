@@ -1,8 +1,9 @@
 package com.shoe.shoedistance;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Shoe {
+public class Shoe implements Serializable {
 
 
     private int distance;
