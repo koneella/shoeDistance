@@ -2,6 +2,7 @@ package com.shoe.shoedistance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Shoe adidas22 = new Shoe("ub11", "adidas1", 25);
         Shoe adidas23 = new Shoe("ub11", "adidas1", 25);
 
-        ArrayList<Shoe> shoes = new ArrayList<Shoe>();
+        final ArrayList<Shoe> shoes = new ArrayList<Shoe>();
 
         shoes.add(adidas);
         shoes.add(adidas1);
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Log.d("testiii", "" + i);
+                // open shoeactivity and pass the shoe arraylist to it
+                Intent intent = new Intent(this, ShoeActivity.class);
+                intent.putExtra("shoes", shoes);
 
             }
         });
