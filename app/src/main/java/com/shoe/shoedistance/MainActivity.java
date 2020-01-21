@@ -13,8 +13,10 @@ import java.util.ArrayList;
 
 
 //todo add shoes button
+//todo snackbar for adding shoes
+//todo delete shoe
 //todo graph for shoe distances
-//todo black action bar maybe
+//todo dark mode option
 
 
 public class MainActivity extends AppCompatActivity {
