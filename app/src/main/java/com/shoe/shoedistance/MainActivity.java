@@ -9,10 +9,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
 
-//todo add shoes button
+//todo popup window for adding shoes
 //todo snackbar for adding shoes
 //todo delete shoe
 //todo graph for shoe distances
@@ -28,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        FloatingActionButton addShoeFloat = findViewById(R.id.addShoeButton);
         ListView listShoes = (ListView) findViewById(R.id.list_shoes);
 
         Shoe adidas = new Shoe("ub", "adidas", 22);
@@ -72,6 +76,15 @@ public class MainActivity extends AppCompatActivity {
                 // pass the shoe arraylist
                 intent.putExtra("shoe", shoes);
                 startActivity(intent);
+            }
+        });
+
+        // listener for floating action button used for adding shoes
+        addShoeFloat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
             }
         });
 
