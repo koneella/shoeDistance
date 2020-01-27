@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Model"/>
+        android:hint="Model" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/distanceDialog"
@@ -41,7 +41,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right">
+        android:gravity="right"
+        android:padding="10dp">
 
         <Button
             android:id="@+id/buttonDialog_cancel"

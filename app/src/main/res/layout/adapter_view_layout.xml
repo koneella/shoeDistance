@@ -12,7 +12,7 @@
         android:layout_height="60dp"
         android:text="Merkki"
         android:layout_weight="50"
-        />
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/model"
@@ -21,7 +21,7 @@
         android:gravity="center"
         android:text="malli"
         android:layout_weight="50"
-        />
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/kilometers"
@@ -30,7 +30,7 @@
         android:gravity="center"
         android:text="100"
         android:layout_weight="50"
-        />
+        android:textColor="#000000"/>
 
 
 </LinearLayout>
