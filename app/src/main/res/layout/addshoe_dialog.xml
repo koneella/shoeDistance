@@ -14,29 +14,55 @@
         android:layout_marginBottom="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/brandDialog"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/brand_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Brand"/>
+        android:padding="10dp">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/modelDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Model" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/brandDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Brand" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/distanceDialog"
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/model_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="Distance"/>
+        android:padding="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/modelDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Model"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/distance_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/distanceDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="Distance"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

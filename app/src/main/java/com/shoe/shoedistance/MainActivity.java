@@ -14,11 +14,12 @@ import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
 
-//todo popup window for adding shoes
+
 //todo snackbar for adding shoes
 //todo delete shoe
 //todo graph for shoe distances
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,31 +39,9 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton addShoeFloat = findViewById(R.id.addShoeButton);
         ListView listShoes = (ListView) findViewById(R.id.list_shoes);
 
-        Shoe adidas = new Shoe("ub", "adidas", 22);
-        Shoe adidas1 = new Shoe("ub1", "adidas1", 25);
-        Shoe adidas2 = new Shoe("ub11", "adidas1", 25);
-        Shoe adidas11 = new Shoe("ub", "adidas", 22);
-        Shoe adidas111 = new Shoe("ub1", "adidas1", 25);
-        Shoe adidas21 = new Shoe("ub11", "adidas1", 25);
-        Shoe adidas31 = new Shoe("ub", "adidas", 22);
-        Shoe adidas22 = new Shoe("ub11", "adidas1", 25);
-        Shoe adidas23 = new Shoe("ub11", "adidas1", 25);
-
         final ArrayList<Shoe> shoes = new ArrayList<Shoe>();
 
-        shoes.add(adidas);
-        shoes.add(adidas1);
-        shoes.add(adidas2);
-        shoes.add(adidas11);
-        shoes.add(adidas111);
-        shoes.add(adidas1);
-        shoes.add(adidas31);
-        shoes.add(adidas11);
-        shoes.add(adidas22);
-        shoes.add(adidas21);
-        shoes.add(adidas23);
-
-        ShoeListAdapter adapter = new ShoeListAdapter(this, R.layout.adapter_view_layout, shoes);
+        final ShoeListAdapter adapter = new ShoeListAdapter(this, R.layout.adapter_view_layout, shoes);
         listShoes.setAdapter(adapter);
 
         // listener for shoelist clicks
@@ -88,15 +68,53 @@ public class MainActivity extends AppCompatActivity {
 
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
                 View alertView = getLayoutInflater().inflate(R.layout.addshoe_dialog, null);
-                EditText brandDialog = (EditText) alertView.findViewById(R.id.brandDialog);
-                EditText modelDialog = (EditText) alertView.findViewById(R.id.modelDialog);
-                EditText distanceDialog = (EditText) alertView.findViewById(R.id.distanceDialog);
+                final EditText brandDialog = (EditText) alertView.findViewById(R.id.brandDialog);
+                final EditText modelDialog = (EditText) alertView.findViewById(R.id.modelDialog);
+                final EditText distanceDialog = (EditText) alertView.findViewById(R.id.distanceDialog);
                 Button confirmButton = (Button) alertView.findViewById(R.id.buttonDialog_ok);
                 Button cancelButton = (Button) alertView.findViewById(R.id.buttonDialog_cancel);
-
+                final TextInputLayout brand_layout = (TextInputLayout) alertView.findViewById(R.id.brand_layout);
+                final TextInputLayout model_layout = (TextInputLayout) alertView.findViewById(R.id.model_layout);
+                final TextInputLayout distance_layout = (TextInputLayout) alertView.findViewById(R.id.distance_layout);
 
                 alertBuilder.setView(alertView);
-                AlertDialog dialog = alertBuilder.create();
+                final AlertDialog dialog = alertBuilder.create();
+
+                confirmButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(brandDialog.getText().toString().isEmpty()) {
+                            brand_layout.setError("Please enter a brand.");
+                        } else if(modelDialog.getText().toString().isEmpty()) {
+                            model_layout.setError("Please enter a model.");
+                        } else if(distanceDialog.getText().toString().isEmpty()){
+                            distance_layout.setError("Please enter starting distance.");
+                        } else {
+
+                            // get the info from the editTexts
+                            String model = modelDialog.getText().toString();
+                            String brand = brandDialog.getText().toString();
+                            int distance = Integer.parseInt(distanceDialog.getText().toString());
+
+                            // create newshoe
+                            Shoe newshoe = new Shoe(model, brand, distance);
+
+                            // pass it to the adapter
+                            adapter.add(newshoe);
+                            dialog.dismiss();
+                        }
+                    }
+                });
+
+
+                // listener for closing the shoedialog
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
                 dialog.show();
             }
         });
