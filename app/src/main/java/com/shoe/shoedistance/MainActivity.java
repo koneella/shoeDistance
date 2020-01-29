@@ -3,6 +3,7 @@ package com.shoe.shoedistance;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +16,10 @@ import android.widget.ListView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
@@ -27,7 +31,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    ArrayList<Shoe> shoes = new ArrayList<Shoe>();
     private static final String TAG = "MainActivity";
 
 
@@ -36,13 +40,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //load the saved arraylist from json
+        loadData();
+
         FloatingActionButton addShoeFloat = findViewById(R.id.addShoeButton);
         ListView listShoes = (ListView) findViewById(R.id.list_shoes);
 
-        final ArrayList<Shoe> shoes = new ArrayList<Shoe>();
-
         final ShoeListAdapter adapter = new ShoeListAdapter(this, R.layout.adapter_view_layout, shoes);
         listShoes.setAdapter(adapter);
+
 
         // listener for shoelist clicks
         listShoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -90,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
                         } else if(distanceDialog.getText().toString().isEmpty()){
                             distance_layout.setError("Please enter starting distance.");
                         } else {
-
                             // get the info from the editTexts
                             String model = modelDialog.getText().toString();
                             String brand = brandDialog.getText().toString();
@@ -101,11 +106,11 @@ public class MainActivity extends AppCompatActivity {
 
                             // pass it to the adapter
                             adapter.add(newshoe);
+                            saveData();
                             dialog.dismiss();
                         }
                     }
                 });
-
 
                 // listener for closing the shoedialog
                 cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -114,17 +119,34 @@ public class MainActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-
                 dialog.show();
             }
         });
 
-
-
-
     }
 
+    // Used for saving the shoe arraylist to json
+    private void saveData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(shoes);
+        editor.putString("list", json);
+        editor.apply();
+    }
 
+    // Used for loading the shoe arraylist from json
+    private void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("list", null);
+        Type type = new TypeToken<ArrayList<Shoe>>() {}.getType();
+        shoes = gson.fromJson(json, type);
+
+        if(shoes == null) {
+            shoes = new ArrayList<>();
+        }
+    }
 
 
 }
