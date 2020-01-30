@@ -31,7 +31,12 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Shoe> shoes = new ArrayList<Shoe>();
+
+    private ArrayList<Shoe> shoes = new ArrayList<Shoe>();
+
+    private ShoeListAdapter adapter;
+    ListView listShoes;
+
     private static final String TAG = "MainActivity";
 
 
@@ -44,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         loadData();
 
         FloatingActionButton addShoeFloat = findViewById(R.id.addShoeButton);
-        ListView listShoes = (ListView) findViewById(R.id.list_shoes);
+        listShoes = (ListView) findViewById(R.id.list_shoes);
 
-        final ShoeListAdapter adapter = new ShoeListAdapter(this, R.layout.adapter_view_layout, shoes);
+        adapter = new ShoeListAdapter(this, R.layout.adapter_view_layout, shoes);
         listShoes.setAdapter(adapter);
 
 
@@ -55,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                // open shoeactivity and pass the shoe arraylist to it
+                // open shoeactivity
                 Intent intent = new Intent(MainActivity.this, ShoeActivity.class);
 
                 // pass the location from the listview
                 intent.putExtra("position", i);
 
                 // pass the shoe arraylist
-                intent.putExtra("shoe", shoes);
+                //intent.putExtra("shoe", shoes);
                 startActivity(intent);
             }
         });
@@ -74,11 +79,14 @@ public class MainActivity extends AppCompatActivity {
 
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
                 View alertView = getLayoutInflater().inflate(R.layout.addshoe_dialog, null);
+
                 final EditText brandDialog = (EditText) alertView.findViewById(R.id.brandDialog);
                 final EditText modelDialog = (EditText) alertView.findViewById(R.id.modelDialog);
                 final EditText distanceDialog = (EditText) alertView.findViewById(R.id.distanceDialog);
+
                 Button confirmButton = (Button) alertView.findViewById(R.id.buttonDialog_ok);
                 Button cancelButton = (Button) alertView.findViewById(R.id.buttonDialog_cancel);
+
                 final TextInputLayout brand_layout = (TextInputLayout) alertView.findViewById(R.id.brand_layout);
                 final TextInputLayout model_layout = (TextInputLayout) alertView.findViewById(R.id.model_layout);
                 final TextInputLayout distance_layout = (TextInputLayout) alertView.findViewById(R.id.distance_layout);
@@ -101,11 +109,11 @@ public class MainActivity extends AppCompatActivity {
                             String brand = brandDialog.getText().toString();
                             int distance = Integer.parseInt(distanceDialog.getText().toString());
 
-                            // create newshoe
-                            Shoe newshoe = new Shoe(model, brand, distance);
+                            // insert into a new shoe
+                            Shoe newShoe = new Shoe(model, brand, distance);
 
                             // pass it to the adapter
-                            adapter.add(newshoe);
+                            adapter.add(newShoe);
                             saveData();
                             dialog.dismiss();
                         }
@@ -125,8 +133,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        loadData();
+        adapter = new ShoeListAdapter(this, R.layout.adapter_view_layout, shoes);
+        listShoes.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+    }
+
     // Used for saving the shoe arraylist to json
-    private void saveData() {
+    public void saveData() {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
@@ -136,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Used for loading the shoe arraylist from json
-    private void loadData() {
+    public void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("list", null);
@@ -147,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
             shoes = new ArrayList<>();
         }
     }
+
+
 
 
 }
