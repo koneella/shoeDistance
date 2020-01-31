@@ -22,6 +22,11 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import co.mobiwise.materialintro.animation.MaterialIntroListener;
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.shape.ShapeType;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 
 
 //todo snackbar for adding shoes
@@ -30,6 +35,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+
 
     private ArrayList<Shoe> shoes = new ArrayList<Shoe>();
 
@@ -42,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         //load the saved arraylist from json
         loadData();
 
@@ -50,6 +58,35 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ShoeListAdapter(this, R.layout.adapter_view_layout, shoes);
         listShoes.setAdapter(adapter);
+
+        // used for showing the tutorialview intro
+        final MaterialIntroView.Builder intro_tip = new MaterialIntroView.Builder(this)
+                .enableDotAnimation(false)
+                .enableIcon(false)
+                .setFocusGravity(FocusGravity.CENTER)
+                .setFocusType(Focus.MINIMUM)
+                .setDelayMillis(500)
+                .enableFadeAnimation(true)
+                .performClick(true)
+                .setInfoText("Welcome to shoeDistance! Start by adding a shoe using this button.")
+                .setShape(ShapeType.CIRCLE)
+                .setTarget(addShoeFloat)
+                .setUsageId("start");
+        intro_tip.show();
+
+        // used for showing the tutorialview after first shoe
+        final MaterialIntroView.Builder after_shoe_add_tip= new MaterialIntroView.Builder(this)
+                .enableDotAnimation(false)
+                .enableIcon(false)
+                .setFocusGravity(FocusGravity.CENTER)
+                .setFocusType(Focus.NORMAL)
+                .setDelayMillis(500)
+                .enableFadeAnimation(true)
+                .performClick(true)
+                .setInfoText("Great! You can now check your shoes by clicking here.")
+                .setShape(ShapeType.RECTANGLE)
+                .setTarget(listShoes)
+                .setUsageId("after_shoe_add");
 
 
         // listener for shoelist clicks
@@ -111,9 +148,12 @@ public class MainActivity extends AppCompatActivity {
                             adapter.add(newShoe);
                             saveData();
                             dialog.dismiss();
+                            after_shoe_add_tip.show();
+
                         }
                     }
                 });
+
 
                 // listener for closing the shoedialog
                 cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +165,37 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+
+/*
+        final MaterialIntroView.Builder intro3 = new MaterialIntroView.Builder(this)
+                .setFocusType(Focus.ALL)
+                .setDelayMillis(500)
+                .setTarget(listShoes)
+                .setInfoText("Some direction");
+
+
+        final MaterialIntroView.Builder intro2 = new MaterialIntroView.Builder(this)
+                .enableDotAnimation(false)
+                .enableIcon(false)
+                .setFocusGravity(FocusGravity.CENTER)
+                .setFocusType(Focus.MINIMUM)
+                .setDelayMillis(500)
+                .enableFadeAnimation(true)
+                .performClick(true)
+                .setInfoText("Great!")
+                .setShape(ShapeType.CIRCLE)
+                .setTarget(listShoes)
+                .setUsageId("shoe_added")
+                .setListener(s -> intro3.show());
+
+                                .setListener(s -> intro2.show())
+
+*/
+
+
+
+
 
     }
 
