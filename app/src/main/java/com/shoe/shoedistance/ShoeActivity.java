@@ -94,18 +94,42 @@ public class ShoeActivity extends AppCompatActivity {
                     }
                 });
 
-                remove_shoe_button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
 
                 dialog.show();
             }
         });
 
+        remove_shoe_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ShoeActivity.this);
+                View alertView = getLayoutInflater().inflate(R.layout.remove_shoe_dialog, null);
+                Button remove_shoe_ok = (Button) alertView.findViewById(R.id.buttonDialog_ok);
+                Button remove_shoe_cancel = (Button) alertView.findViewById(R.id.buttonDialog_cancel);
+
+                alertBuilder.setView(alertView);
+                final AlertDialog dialog = alertBuilder.create();
+
+                remove_shoe_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        shoes.remove(id);
+                        onSupportNavigateUp();
+                    }
+                });
+
+                remove_shoe_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
 
     }
 

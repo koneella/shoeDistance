@@ -3,6 +3,8 @@
     <string name="confirm_button">Confirm</string>
     <string name="cancel_button">Cancel</string>
     <string name="add_shoe_title">Add a shoe</string>
+    <string name="remove_shoe_title">Remove shoe?</string>
     <string name="add_distance_button">Add distance</string>
     <string name="remove_shoe_button">Remove shoe</string>
+    <string name="remove_shoe_dialog">This will permanently remove the shoe.</string>
 </resources>
