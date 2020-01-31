@@ -26,6 +26,8 @@ import java.util.ArrayList;
 public class ShoeActivity extends AppCompatActivity {
 
     private ArrayList<Shoe> shoes;
+    private TextView distance;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +40,11 @@ public class ShoeActivity extends AppCompatActivity {
         loadData();
         Intent intent = getIntent();
         //final ArrayList<Shoe> shoes = (ArrayList<Shoe>) intent.getSerializableExtra("shoe");
-        final int id = intent.getIntExtra("position", 0);
+        id = intent.getIntExtra("position", 0);
 
         TextView brand = (TextView) findViewById(R.id.brand);
         TextView model = (TextView) findViewById(R.id.model);
-        TextView distance = (TextView) findViewById(R.id.distance);
+        distance = (TextView) findViewById(R.id.distance);
 
         brand.setText(shoes.get(id).getBrand());
         model.setText(shoes.get(id).getModel());
@@ -74,8 +76,13 @@ public class ShoeActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Log.d("pickertesti", "" + add_distance_picker.getValue());
 
-                        shoes.get(id).setDistance(add_distance_picker.getValue());
-                        saveData();
+                        // take the old distance
+                        int oldDistance = shoes.get(id).getDistance();
+                        // add the new distance to the old
+                        int newDistance = oldDistance + add_distance_picker.getValue();
+                        // set the speficic arraylist index to the newDistance
+                        shoes.get(id).setDistance(newDistance);
+                        updateDistanceText();
                         dialog.dismiss();
                     }
                 });
@@ -83,11 +90,9 @@ public class ShoeActivity extends AppCompatActivity {
                 add_distance_cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        saveData();
                         dialog.dismiss();
                     }
                 });
-
 
                 remove_shoe_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -95,7 +100,6 @@ public class ShoeActivity extends AppCompatActivity {
 
                     }
                 });
-
 
                 dialog.show();
             }
@@ -130,9 +134,16 @@ public class ShoeActivity extends AppCompatActivity {
     }
 
 
+    // used for updating the distance when pressing the add distance button
+    public void updateDistanceText() {
+        distance = (TextView) findViewById(R.id.distance);
+        distance.setText(shoes.get(id).getDistance() + " kilometers");
+    }
+
     // back button listener
     @Override
     public boolean onSupportNavigateUp() {
+        saveData();
         onBackPressed();
         return true;
     }

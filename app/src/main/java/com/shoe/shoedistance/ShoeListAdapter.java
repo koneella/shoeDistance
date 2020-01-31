@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ShoeListAdapter extends ArrayAdapter<Shoe> {
 
     private Context mContext;
-    int mResource;
+    private int mResource;
 
     public ShoeListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Shoe> objects) {
         super(context, resource, objects);
