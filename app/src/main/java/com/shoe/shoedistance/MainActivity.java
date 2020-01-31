@@ -25,7 +25,6 @@ import java.util.ArrayList;
 
 
 //todo snackbar for adding shoes
-//todo delete shoe
 //todo graph for shoe distances
 //todo dark mode option
 
@@ -35,10 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Shoe> shoes = new ArrayList<Shoe>();
 
     private ShoeListAdapter adapter;
-    ListView listShoes;
-
-    private static final String TAG = "MainActivity";
-
+    private ListView listShoes;
+    private FloatingActionButton addShoeFloat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //load the saved arraylist from json
         loadData();
 
-        FloatingActionButton addShoeFloat = findViewById(R.id.addShoeButton);
+        addShoeFloat = findViewById(R.id.addShoeButton);
         listShoes = (ListView) findViewById(R.id.list_shoes);
 
         adapter = new ShoeListAdapter(this, R.layout.adapter_view_layout, shoes);
@@ -66,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 // pass the location from the listview
                 intent.putExtra("position", i);
 
-                // pass the shoe arraylist
-                //intent.putExtra("shoe", shoes);
                 startActivity(intent);
             }
         });
@@ -109,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                             String brand = brandDialog.getText().toString();
                             int distance = Integer.parseInt(distanceDialog.getText().toString());
 
-                            // insert into a new shoe
+                            // insert data into a new shoe
                             Shoe newShoe = new Shoe(model, brand, distance);
 
                             // pass it to the adapter

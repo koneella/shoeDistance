@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShoeDistance</string>
+    <string name="app_name">shoeDistance</string>
     <string name="confirm_button">Confirm</string>
     <string name="cancel_button">Cancel</string>
     <string name="add_shoe_title">Add a shoe</string>

@@ -26,6 +26,8 @@ import java.util.ArrayList;
 public class ShoeActivity extends AppCompatActivity {
 
     private ArrayList<Shoe> shoes;
+    private TextView brand;
+    private TextView model;
     private TextView distance;
     private int id;
 
@@ -39,11 +41,10 @@ public class ShoeActivity extends AppCompatActivity {
 
         loadData();
         Intent intent = getIntent();
-        //final ArrayList<Shoe> shoes = (ArrayList<Shoe>) intent.getSerializableExtra("shoe");
         id = intent.getIntExtra("position", 0);
 
-        TextView brand = (TextView) findViewById(R.id.brand);
-        TextView model = (TextView) findViewById(R.id.model);
+        brand = (TextView) findViewById(R.id.brand);
+        model = (TextView) findViewById(R.id.model);
         distance = (TextView) findViewById(R.id.distance);
 
         brand.setText(shoes.get(id).getBrand());
@@ -132,7 +133,6 @@ public class ShoeActivity extends AppCompatActivity {
         });
 
     }
-
 
     // Used for saving the shoe arraylist to json
     public void saveData() {
