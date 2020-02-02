@@ -49,7 +49,7 @@ public class ShoeActivity extends AppCompatActivity {
 
         brand.setText(shoes.get(id).getBrand());
         model.setText(shoes.get(id).getModel());
-        distance.setText(shoes.get(id).getDistance() + " kilometers");
+        distance.setText(shoes.get(id).getDistance() + "");
 
         final Button add_distance_button = (Button) findViewById(R.id.add_distance);
         final Button remove_shoe_button = (Button) findViewById(R.id.remove_shoe);
@@ -75,7 +75,6 @@ public class ShoeActivity extends AppCompatActivity {
                 add_distance_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d("pickertesti", "" + add_distance_picker.getValue());
 
                         // take the old distance
                         int oldDistance = shoes.get(id).getDistance();
@@ -128,7 +127,6 @@ public class ShoeActivity extends AppCompatActivity {
                 });
 
                 dialog.show();
-
             }
         });
 
@@ -161,7 +159,7 @@ public class ShoeActivity extends AppCompatActivity {
     // used for updating the distance when pressing the add distance button
     public void updateDistanceText() {
         distance = (TextView) findViewById(R.id.distance);
-        distance.setText(shoes.get(id).getDistance() + " kilometers");
+        distance.setText(shoes.get(id).getDistance() + "");
     }
 
     // back button listener

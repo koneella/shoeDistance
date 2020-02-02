@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 .setUsageId("start");
         intro_tip.show();
 
-        // used for showing the tutorialview after first shoe
+        // used for showing the tutorialview after adding first shoe
         final MaterialIntroView.Builder after_shoe_add_tip= new MaterialIntroView.Builder(this)
                 .enableDotAnimation(false)
                 .enableIcon(false)
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDelayMillis(500)
                 .enableFadeAnimation(true)
                 .performClick(true)
-                .setInfoText("Great! You can now check your shoes by clicking here.")
+                .setInfoText("Great! You can now check your shoe by clicking here. Have fun!")
                 .setShape(ShapeType.RECTANGLE)
                 .setTarget(listShoes)
                 .setUsageId("after_shoe_add");
@@ -115,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 final EditText brandDialog = (EditText) alertView.findViewById(R.id.brandDialog);
                 final EditText modelDialog = (EditText) alertView.findViewById(R.id.modelDialog);
                 final EditText distanceDialog = (EditText) alertView.findViewById(R.id.distanceDialog);
+
+                distanceDialog.setFilters(new InputFilter[]{new InputFilterMinMax("1", "10000")});
 
                 Button confirmButton = (Button) alertView.findViewById(R.id.buttonDialog_ok);
                 Button cancelButton = (Button) alertView.findViewById(R.id.buttonDialog_cancel);
@@ -165,36 +168,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-
-
-/*
-        final MaterialIntroView.Builder intro3 = new MaterialIntroView.Builder(this)
-                .setFocusType(Focus.ALL)
-                .setDelayMillis(500)
-                .setTarget(listShoes)
-                .setInfoText("Some direction");
-
-
-        final MaterialIntroView.Builder intro2 = new MaterialIntroView.Builder(this)
-                .enableDotAnimation(false)
-                .enableIcon(false)
-                .setFocusGravity(FocusGravity.CENTER)
-                .setFocusType(Focus.MINIMUM)
-                .setDelayMillis(500)
-                .enableFadeAnimation(true)
-                .performClick(true)
-                .setInfoText("Great!")
-                .setShape(ShapeType.CIRCLE)
-                .setTarget(listShoes)
-                .setUsageId("shoe_added")
-                .setListener(s -> intro3.show());
-
-                                .setListener(s -> intro2.show())
-
-*/
-
-
-
 
 
     }

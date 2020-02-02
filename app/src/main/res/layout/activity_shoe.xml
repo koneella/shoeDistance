@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.shoe.shoedistance.ShoeActivity">
+    tools:context="com.shoe.shoedistance.ShoeActivity"
+    android:layout_marginTop="70dp">
 
     <TextView
         android:id="@+id/brand"
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_margin="10dp"
-        android:textSize="32dp"/>
+        android:textSize="32dp" />
 
     <TextView
         android:id="@+id/model"
@@ -35,23 +36,25 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:layout_weight="0.5"
+        android:gravity="bottom|center">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/add_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/shoeButtons"
+            android:layout_margin="20dp"
             android:text="@string/add_distance_button"
-            android:layout_margin="20dp" />
+            android:theme="@style/shoeButtons" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/remove_shoe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/shoeButtons"
+            android:layout_margin="20dp"
             android:text="@string/remove_shoe_button"
-            android:layout_margin="20dp" />
+            android:theme="@style/shoeButtons" />
 
     </LinearLayout>
 
