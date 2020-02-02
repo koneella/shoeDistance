@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -29,8 +27,6 @@ import co.mobiwise.materialintro.shape.FocusGravity;
 import co.mobiwise.materialintro.shape.ShapeType;
 import co.mobiwise.materialintro.view.MaterialIntroView;
 
-
-//todo snackbar for adding shoes
 //todo graph for shoe distances
 //todo dark mode option
 
@@ -44,12 +40,16 @@ public class MainActivity extends AppCompatActivity {
     private ListView listShoes;
     private FloatingActionButton addShoeFloat;
 
+    // used for the snackbar
+    private View v;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
+        v = findViewById(android.R.id.content);
 
         //load the saved arraylist from json
         loadData();
@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                             saveData();
                             dialog.dismiss();
                             after_shoe_add_tip.show();
+                            Snackbar.make(v,"Shoe added" , Snackbar.LENGTH_SHORT).show();
 
                         }
                     }
