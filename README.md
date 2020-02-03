@@ -1,4 +1,8 @@
 
+
+<img src="https://github.com/koneella/shoeDistance/blob/master/pics/-feature-graphic.png">
+
+
 # shoeDistance
 Android application for tracking the distance runned with running shoes.
 
