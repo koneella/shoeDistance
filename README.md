@@ -2,7 +2,7 @@
 # shoeDistance
 Android application for tracking the distance runned with running shoes.
 
-![Main view](https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-093955__01.jpg)  
+![Main view](https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-093955__01.jpg | width=500)  
 ![Add shoe](https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-094014__02.jpg)  
 ![Info view](https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-094001__01.jpg)  
 
