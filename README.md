@@ -7,17 +7,6 @@ Android application for tracking the distance runned with running shoes.
 | <img src="https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-093955__01.jpg" width="350">  | <img src="https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-094014__02.jpg" width="350">  | <img src="https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-094001__01.jpg" width="350">
 
 
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| <img src="https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-093955__01.jpg" width="350">  | <img src="https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-094014__02.jpg" width="350">  |
-| Content Cell  | Content Cell  |
-
-<img src="https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-093955__01.jpg" width="350">
-<img src="https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-094014__02.jpg" width="350">
-<img src="https://github.com/koneella/shoeDistance/blob/master/pics/Screenshot_20200203-094001__01.jpg" width="350">
-
-
 # TODO
 //todo graph for shoe distances  
 //todo dark mode option  
