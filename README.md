@@ -12,6 +12,7 @@ Android application for tracking the distance runned with running shoes.
 # TODO
 //todo graph for shoe distances  
 //todo dark mode option  
+//todo tablet mode  
 
 
 # Built with
