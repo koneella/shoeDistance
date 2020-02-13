@@ -29,6 +29,7 @@ import co.mobiwise.materialintro.view.MaterialIntroView;
 
 //todo graph for shoe distances
 //todo dark mode option
+//todo tablet mode
 
 
 public class MainActivity extends AppCompatActivity {
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 final EditText modelDialog = (EditText) alertView.findViewById(R.id.modelDialog);
                 final EditText distanceDialog = (EditText) alertView.findViewById(R.id.distanceDialog);
 
-                distanceDialog.setFilters(new InputFilter[]{new InputFilterMinMax("1", "10000")});
+                distanceDialog.setFilters(new InputFilter[]{new InputFilterMinMax("0", "10000")});
 
                 Button confirmButton = (Button) alertView.findViewById(R.id.buttonDialog_ok);
                 Button cancelButton = (Button) alertView.findViewById(R.id.buttonDialog_cancel);
@@ -169,8 +170,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-
-
     }
 
 
@@ -181,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ShoeListAdapter(this, R.layout.adapter_view_layout, shoes);
         listShoes.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
     }
 
     // Used for saving the shoe arraylist to json
